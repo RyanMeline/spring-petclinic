@@ -25,5 +25,16 @@ jobs:
           java-version: ${{matrix.java}}
           distribution: 'adopt'
           cache: maven
+          
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
+
+      - name: Upload
+        env:
+          NEXUS_USER: ${{ secrets.NEXUS_USER }}
+          NEXUS_PASS: ${{ secrets.NEXUS_PASS }}
+          NEXUS_URL: ${{ vars.NEXUS_BASE_URL }}
+        run: |
+          curl -sf -u "$NEXUS_USER:$NEXUS_PASS" \
+            --upload-file target/spring-boot-starter-parent-3.1.0.jar \
+            "${NEXUS_URL}/repository/maven-releases/spring-boot-starter-parent/3.1.0/spring-boot-starter-parent-3.1.0.jar"
