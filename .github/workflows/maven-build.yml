@@ -38,4 +38,4 @@ jobs:
         run: |
           curl -u "${{env.NEXUS_USER}}:${{env.NEXUS_PASS}}" -I \
             http://172.16.39.148:8081/repository/maven-snapshots/
-          ./mvnw -B deploy -DskipTests -Dnexus-snapshot.username=${{env.NEXUS_USER}} -Dnexus-snapshot.password=${{env.NEXUS_PASS}}
+          ./mvnw -B deploy -DskipTests -Dnexus-snapshots.username=${{env.NEXUS_USER}} -Dnexus-snapshots.password=${{env.NEXUS_PASS}}
