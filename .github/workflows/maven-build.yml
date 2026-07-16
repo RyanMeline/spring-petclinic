@@ -34,4 +34,6 @@ jobs:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
           NEXUS_PASS: ${{ secrets.NEXUS_PASS }}
           NEXUS_URL: ${{ vars.NEXUS_BASE_URL }}
-        run: ./mvnw -B deploy -DskipTests -X
+        run: |
+          echo "user set: ${NEXUS_USER:+yes}"
+          ./mvnw -B deploy -DskipTests
