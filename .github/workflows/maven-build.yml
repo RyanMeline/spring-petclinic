@@ -30,16 +30,6 @@ jobs:
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
 
-      - name: Test Upload
-        env:
-          NEXUS_USER: ${{ secrets.NEXUS_USER }}
-          NEXUS_PASS: ${{ secrets.NEXUS_PASS }}
-          NEXUS_URL: ${{ vars.NEXUS_BASE_URL }}
-        run: |
-          curl -v -u "${{env.NEXUS_USER}}:${{env.NEXUS_PASS}}" \
-            --upload-file pom.xml \
-            "${{env.NEXUS_URL}}/repository/maven-snapshots/org/springframework/samples/spring-petclinic/3.1.0-SNAPSHOT/test-upload.xml"
-
       - name: Upload
         env:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
