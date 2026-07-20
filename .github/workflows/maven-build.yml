@@ -37,7 +37,12 @@ jobs:
           <settings>
             <servers>
               <server>
-                <id>nexus</id>
+                <id>nexus-snapshots</id>
+                <username>${{ secrets.NEXUS_USER }}</username>
+                <password>${{ secrets.NEXUS_PASS }}</password>
+              </server>
+              <server>
+                <id>nexus-releases</id>
                 <username>${{ secrets.NEXUS_USER }}</username>
                 <password>${{ secrets.NEXUS_PASS }}</password>
               </server>
