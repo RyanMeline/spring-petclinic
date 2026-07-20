@@ -53,4 +53,4 @@ jobs:
         run: |
           curl -u "${{env.NEXUS_USER}}:${{env.NEXUS_PASS}}" -I \
             ${{env.NEXUS_URL}}/repository/maven-snapshots/
-          ./mvnw -B deploy -DskipTests -s ~/.m2/settings_nexus.xml
+          ./mvnw -B deploy -DskipTests
