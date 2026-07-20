@@ -30,6 +30,21 @@ jobs:
       - name: Build with Maven Wrapper
         run: ./mvnw -B package
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>nexus</id>
+                <username>${{ secrets.NEXUS_USER }}</username>
+                <password>${{ secrets.NEXUS_PASS }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
       - name: Upload
         env:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
